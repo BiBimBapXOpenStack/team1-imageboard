@@ -26,11 +26,6 @@ public class MemberController {
         return memberService.login(memberLoginDto);
     }
 
-//    @GetMapping("logout")
-//    public ResponseEntity<ResultDto> logout() {
-//        return memberService.logout();
-//    }
-
     // 회원 정보 조회 API
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("")

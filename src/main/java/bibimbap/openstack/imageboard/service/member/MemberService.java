@@ -60,14 +60,4 @@ public class MemberService {
 
         return makeResult(HttpStatus.OK, new MemberDto(member));
     }
-
-//    @Transactional
-//    public ResponseEntity<ResultDto> logout() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (auth != null) {
-//            new SecurityContextLogoutHandler().logout(request, response, auth);
-//        }
-//
-//
-//    }
 }
