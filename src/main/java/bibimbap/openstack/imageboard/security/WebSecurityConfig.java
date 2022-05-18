@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-// @PreAuthorize 어노테이션을 메소드 단위로 추가하기 위해서 사용
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final TokenProvider tokenProvider;
@@ -29,7 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/h2-console/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -44,26 +46,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                // swagger 401 issue
-                .antMatchers("/").anonymous()
-                .antMatchers("/swagger-ui.html").anonymous()
-                .antMatchers("/webjars/**").anonymous()
-                .antMatchers("/swagger-resources/**").anonymous()
-                .antMatchers("/v2/**").anonymous()
-                .antMatchers("/csrf").anonymous()
 
-                // before login 401 issue
-                .antMatchers("/api/v1/account/login").permitAll()   // login
-                .antMatchers("/api/v1/account").permitAll() // sign
-                .antMatchers("/api/v1/account/email/**").permitAll()    // send email
-                .antMatchers("/api/v1/account/password/find").permitAll()   // pw find
-                .antMatchers("/api/v1/account/password/change").permitAll() // pw chg
+                // member
+                .antMatchers("/api/members/**").permitAll()
 
                 // auth
-                .antMatchers("/api/v1/authenticate").permitAll() // pw chg
+                .antMatchers("/api/authenticate").permitAll()
 
-                // mail test
-                .antMatchers("/api/v1/mail/send").permitAll()
 
                 // others
                 .anyRequest().permitAll()
