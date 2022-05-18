@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/members")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -25,7 +25,7 @@ public class AuthController {
      * @param memberLoginDto
      * @return
      */
-    @PostMapping("authenticate")
+    @PostMapping("login")
     public ResponseEntity<ResultDto> createJwt(@RequestBody MemberLoginDto memberLoginDto) {
         return authService.authorize(memberLoginDto);
     }

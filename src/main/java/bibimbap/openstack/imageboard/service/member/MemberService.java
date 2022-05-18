@@ -42,18 +42,6 @@ public class MemberService {
     }
 
     @Transactional
-    public ResponseEntity<ResultDto> login(MemberLoginDto memberLoginDto) {
-        Member member = memberRepository.findOneWithAuthoritiesByEmail(memberLoginDto.getEmail()).orElse(null);
-
-        if (member == null)
-            return makeResult(HttpStatus.BAD_REQUEST, "없는 계정입니다.");
-        if (passwordEncoder.matches(memberLoginDto.getPassword(), member.getPassword()))
-            return makeResult(HttpStatus.OK, new MemberDto(member));
-
-        return makeResult(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
-    }
-
-    @Transactional
     public ResponseEntity<ResultDto> findMe() {
         Member member = SecurityUtil.getCurrentEmail().flatMap(memberRepository::findOneWithAuthoritiesByEmail)
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 유저가 없습니다."));
