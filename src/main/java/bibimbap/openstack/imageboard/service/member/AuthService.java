@@ -29,21 +29,13 @@ public class AuthService {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(memberLoginDto.getEmail(), memberLoginDto.getPassword());
 
-        System.out.println("--1---");
-
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        System.out.println("--2--");
-
         String jwt = tokenProvider.creatToken(authentication);
-
-        System.out.println("--3--");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-
-        System.out.println("--4--");
 
         return makeResult(HttpStatus.OK, new TokenDto(jwt));
     }

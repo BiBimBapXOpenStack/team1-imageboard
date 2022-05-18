@@ -7,12 +7,17 @@ import bibimbap.openstack.imageboard.dto.member.MemberDto;
 import bibimbap.openstack.imageboard.dto.member.MemberLoginDto;
 import bibimbap.openstack.imageboard.dto.member.MemberSaveDto;
 import bibimbap.openstack.imageboard.repository.member.MemberRepository;
+import bibimbap.openstack.imageboard.security.util.SecurityUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import static bibimbap.openstack.imageboard.dto.ResultDto.makeResult;
 
@@ -47,4 +52,22 @@ public class MemberService {
 
         return makeResult(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
     }
+
+    @Transactional
+    public ResponseEntity<ResultDto> findMe() {
+        Member member = SecurityUtil.getCurrentEmail().flatMap(memberRepository::findOneWithAuthoritiesByEmail)
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 유저가 없습니다."));
+
+        return makeResult(HttpStatus.OK, new MemberDto(member));
+    }
+
+//    @Transactional
+//    public ResponseEntity<ResultDto> logout() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null) {
+//            new SecurityContextLogoutHandler().logout(request, response, auth);
+//        }
+//
+//
+//    }
 }
