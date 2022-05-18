@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:team1db;MODE=MYSQL;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  profiles:
+    default: default
+jwt:
+  header: Authorization
+  secret: YXR0by1yZXNlYXJjaC1hc3NpZ25tZW50LWJ5LWppeW91bmctbGVlLXR1bGlwLWxlZS1pcy1nb29kLXZlcnktZ29vZAo=
+  token-validity-in-seconds: 86400
