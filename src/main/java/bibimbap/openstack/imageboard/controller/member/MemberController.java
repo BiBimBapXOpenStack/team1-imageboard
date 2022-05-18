@@ -18,10 +18,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-//    @PostMapping("login")
-//    public ResponseEntity<ResultDto> login(@RequestBody MemberLoginDto memberLoginDto) {
-//         return memberService.login(memberLoginDto);
-//    }
+    @PostMapping("login")
+    public ResponseEntity<ResultDto> login(@RequestBody MemberLoginDto memberLoginDto) {
+         return memberService.login(memberLoginDto);
+    }
 
     @PostMapping("signup")
     public ResponseEntity<ResultDto> signup(@RequestBody MemberSaveDto memberSaveDto) {
