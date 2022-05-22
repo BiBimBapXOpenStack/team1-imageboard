@@ -24,6 +24,6 @@ public class Post {
     @Column(columnDefinition = "VARCHAR(255)")
     private String content;
 
-    @Column(columnDefinition = "VARCHAR(255)")
-    private String img;
+    @Column(columnDefinition = "INTEGER")
+    private Long img_id;
 }

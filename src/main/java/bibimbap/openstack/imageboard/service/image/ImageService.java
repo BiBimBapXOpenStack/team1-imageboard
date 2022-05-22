@@ -3,11 +3,10 @@ package bibimbap.openstack.imageboard.service.image;
 import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.repository.image.ImageRepository;
-import bibimbap.openstack.imageboard.util.FileManager;
+import bibimbap.openstack.imageboard.util.file.FileManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +19,9 @@ public class ImageService {
     private final FileManager fileManager;
 
 
-    public void saveImage(ImageUploadDto dto) {
+    public Long saveImage(ImageUploadDto dto) {
         Image image = fileManager.save(dto);
-        imageRepository.save(image);
+        return imageRepository.save(image).getId();
     }
 
     public boolean isExistImage(Long id) {
