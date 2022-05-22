@@ -5,7 +5,7 @@ import lombok.*;
 @Getter @Setter @ToString
 @AllArgsConstructor @NoArgsConstructor
 public class PostCreateDto {
-    private Long user_id;
+    private Long userId;
     private String title;
     private String content;
     /**

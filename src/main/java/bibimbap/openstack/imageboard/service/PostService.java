@@ -43,6 +43,6 @@ public class PostService {
     }
 
     private Post _postDtoConvertor(PostCreateDto dto) {
-        return new Post(null, dto.getUser_id(), dto.getTitle(), dto.getContent(), dto.getImg());
+        return new Post(null, dto.getUserId(), dto.getTitle(), dto.getContent(), dto.getImg());
     }
 }

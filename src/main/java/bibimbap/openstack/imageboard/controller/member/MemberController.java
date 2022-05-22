@@ -16,15 +16,17 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
 
-    @PostMapping("signup")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/")
+    public ResponseEntity<ResultDto> findMe() {
+        return memberService.findMe();
+    }
+
+    @PostMapping("/signup")
     public ResponseEntity<ResultDto> signup(@RequestBody MemberSaveDto memberSaveDto) {
         return memberService.signup(memberSaveDto);
     }
 
     // 회원 정보 조회 API
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @GetMapping("")
-    public ResponseEntity<ResultDto> findMe() {
-        return memberService.findMe();
-    }
+
 }

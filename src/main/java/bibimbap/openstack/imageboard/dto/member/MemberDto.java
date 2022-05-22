@@ -13,17 +13,9 @@ import java.util.Date;
 public class MemberDto {
     private final Long id;
     private final String username;
-    private final String email;
-    private final String password;
-    private final Date createdAt;
-    private final Date updatedAt;
 
     public MemberDto(Member member) {
         this.id = member.getId();
-        this.createdAt = member.getCreatedAt();
-        this.updatedAt = member.getUpdatedAt();
         this.username = member.getUsername();
-        this.email = member.getEmail();
-        this.password = member.getPassword();
     }
 }
