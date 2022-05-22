@@ -1,10 +1,9 @@
 package bibimbap.openstack.imageboard.dto.member;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Getter @NoArgsConstructor @Setter
 public class MemberLoginDto {
     @Schema(description = "이메일")
     private String email;   

@@ -1,5 +1,6 @@
 package bibimbap.openstack.imageboard.dto;
 
+import bibimbap.openstack.imageboard.security.JwtFilter;
 import lombok.Data;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,19 @@ public class ResultDto {
         message.setStatus(status);
         message.setResult(object);
 
-        return new ResponseEntity<>(message, headers, HttpStatus.OK);
+        return new ResponseEntity<>(message, headers, status);
+    }
+
+    public static ResponseEntity<ResultDto> makeResult(HttpStatus status, Object object, String jwt) {
+        HttpHeaders headers= new HttpHeaders();
+        headers.setContentType(new MediaType("application", "json", StandardCharsets.UTF_8));
+        headers.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+
+        ResultDto message = new ResultDto();
+        message.setStatus(status);
+        message.setResult(object);
+
+        return new ResponseEntity<>(message, headers, status);
     }
 
 }

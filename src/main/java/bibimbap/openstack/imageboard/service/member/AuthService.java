@@ -4,7 +4,6 @@ import bibimbap.openstack.imageboard.domain.member.Member;
 import bibimbap.openstack.imageboard.dto.ResultDto;
 import bibimbap.openstack.imageboard.dto.member.MemberDto;
 import bibimbap.openstack.imageboard.dto.member.MemberLoginDto;
-import bibimbap.openstack.imageboard.dto.member.TokenDto;
 import bibimbap.openstack.imageboard.repository.member.MemberRepository;
 import bibimbap.openstack.imageboard.security.JwtFilter;
 import bibimbap.openstack.imageboard.security.TokenProvider;
@@ -41,15 +40,13 @@ public class AuthService {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(memberLoginDto.getEmail(), memberLoginDto.getPassword());
 
+
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.creatToken(authentication);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-
-        return makeResult(HttpStatus.OK, new TokenDto(jwt));
+        return makeResult(HttpStatus.OK, new MemberDto(member), jwt);
     }
 
 }

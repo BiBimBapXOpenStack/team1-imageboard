@@ -3,12 +3,14 @@ package bibimbap.openstack.imageboard.dto.member;
 import bibimbap.openstack.imageboard.domain.member.Authority;
 import bibimbap.openstack.imageboard.domain.member.Member;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class MemberSaveDto {
 
     private String email;
