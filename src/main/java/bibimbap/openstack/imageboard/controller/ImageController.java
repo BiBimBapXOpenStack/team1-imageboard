@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import java.nio.file.Paths;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RequestMapping("/api/images")
 public class ImageController {
 
@@ -74,10 +76,9 @@ public class ImageController {
 
         byte[] fileByte = Files.readAllBytes(downloadFile.toPath());
         response.setContentType("application/octet-stream");
-        response.setContentType("application/octet-stream");
         response.setContentLength(fileByte.length);
 
-        response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(image.getImageURL(),"UTF-8") +"\";");
+        response.setHeader("Content-Disposition", "attachment; fileName=\"" + image.getImageName() + "\";");
         response.setHeader("Content-Transfer-Encoding", "binary");
 
         response.getOutputStream().write(fileByte);
