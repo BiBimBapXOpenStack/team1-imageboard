@@ -3,7 +3,9 @@ package bibimbap.openstack.imageboard.service.image;
 import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.repository.image.ImageRepository;
+import bibimbap.openstack.imageboard.util.FileManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,44 +17,12 @@ import java.io.IOException;
 public class ImageService {
 
     private final ImageRepository imageRepository;
+    private final FileManager fileManager;
 
-    private final String uploadDir = "/Users/jaeminan/desktop/uploaded/";
 
     public void saveImage(ImageUploadDto dto) {
-        String url = _saveFile(dto);
-        imageRepository.save(Image.builder()
-                .imageName(dto.getImageName())
-                .imageURL(url)
-                .build()
-        );
-    }
-
-    private String _saveFile(ImageUploadDto dto) {
-        MultipartFile mptFile = dto.getFile();
-        String imageName = dto.getImageName();
-        String filePath = _getFilePath(dto);
-        File file = new File(filePath);
-        try {
-            mptFile.transferTo(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return filePath;
-    }
-
-    private String _getFilePath(ImageUploadDto dto) {
-        MultipartFile mptFile = dto.getFile();
-        String imageName = dto.getImageName();
-
-        String ogName = mptFile.getOriginalFilename();
-        String suffix = ogName.split("\\.")[1];
-
-        StringBuilder sb = new StringBuilder();
-        String newName = sb.append(imageName).append(".").append(suffix).toString();
-        dto.setImageName(newName);
-
-        sb = new StringBuilder();
-        return sb.append(uploadDir).append(newName).toString();
+        Image image = fileManager.save(dto);
+        imageRepository.save(image);
     }
 
     public boolean isExistImage(Long id) {
@@ -65,5 +35,21 @@ public class ImageService {
 
     public void deleteImageById(Long id) {
         imageRepository.delete(Image.builder().id(id).build());
+    }
+
+    public String getContentType(String url) {
+        try {
+            return fileManager.probeContentType(url);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Resource getResource(String url) {
+        return fileManager.loadResource(url);
+    }
+
+    public File getFile(String url) {
+        return fileManager.loadFile(url);
     }
 }

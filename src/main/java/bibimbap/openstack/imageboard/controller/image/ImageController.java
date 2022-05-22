@@ -36,24 +36,20 @@ public class ImageController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resource> showImage(@PathVariable Long id) throws MalformedURLException {
+    public ResponseEntity<Resource> showImage(@PathVariable Long id) {
         if (!imageService.isExistImage(id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
         Image image = imageService.getImageById(id);
-        String path = image.getImageURL();
 
-        log.info("path = {}", path);
+        String contentType = imageService.getContentType(image.getImageURL());
+        Resource resource = imageService.getResource(image.getImageURL());
 
         HttpHeaders header = new HttpHeaders();
-        try {
-            header.add("Content-Type", Files.probeContentType(Paths.get(path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        header.add("Content-Type", contentType);
 
-        return new ResponseEntity<>(new FileSystemResource(path),header,HttpStatus.OK);
+        return new ResponseEntity<>(resource,header,HttpStatus.OK);
     }
 
     @GetMapping("/meta/{id}")
@@ -70,7 +66,7 @@ public class ImageController {
 
         Image image = imageService.getImageById(id);
 
-        File downloadFile = new File(image.getImageURL());
+        File downloadFile = imageService.getFile(image.getImageURL());
 
         byte[] fileByte = Files.readAllBytes(downloadFile.toPath());
         response.setContentType("application/octet-stream");
