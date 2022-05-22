@@ -1,29 +1,29 @@
-package bibimbap.openstack.imageboard.controller;
+package bibimbap.openstack.imageboard.controller.image;
 
-import bibimbap.openstack.imageboard.domain.Image;
-import bibimbap.openstack.imageboard.dto.ImageUploadDto;
-import bibimbap.openstack.imageboard.service.ImageService;
+import bibimbap.openstack.imageboard.domain.image.Image;
+import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
+import bibimbap.openstack.imageboard.service.image.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RequestMapping("/api/images")
 public class ImageController {
 
@@ -36,24 +36,20 @@ public class ImageController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resource> showImage(@PathVariable Long id) throws MalformedURLException {
+    public ResponseEntity<Resource> showImage(@PathVariable Long id) {
         if (!imageService.isExistImage(id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
         Image image = imageService.getImageById(id);
-        String path = image.getImageURL();
 
-        log.info("path = {}", path);
+        String contentType = imageService.getContentType(image.getImageURL());
+        Resource resource = imageService.getResource(image.getImageURL());
 
         HttpHeaders header = new HttpHeaders();
-        try {
-            header.add("Content-Type", Files.probeContentType(Paths.get(path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        header.add("Content-Type", contentType);
 
-        return new ResponseEntity<>(new FileSystemResource(path),header,HttpStatus.OK);
+        return new ResponseEntity<>(resource,header,HttpStatus.OK);
     }
 
     @GetMapping("/meta/{id}")
@@ -70,14 +66,13 @@ public class ImageController {
 
         Image image = imageService.getImageById(id);
 
-        File downloadFile = new File(image.getImageURL());
+        File downloadFile = imageService.getFile(image.getImageURL());
 
         byte[] fileByte = Files.readAllBytes(downloadFile.toPath());
         response.setContentType("application/octet-stream");
-        response.setContentType("application/octet-stream");
         response.setContentLength(fileByte.length);
 
-        response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(image.getImageURL(),"UTF-8") +"\";");
+        response.setHeader("Content-Disposition", "attachment; fileName=\"" + image.getImageName() + "\";");
         response.setHeader("Content-Transfer-Encoding", "binary");
 
         response.getOutputStream().write(fileByte);

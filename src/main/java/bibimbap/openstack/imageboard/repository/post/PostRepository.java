@@ -1,15 +1,10 @@
 package bibimbap.openstack.imageboard.repository.post;
 
-import bibimbap.openstack.imageboard.domain.Post;
+import bibimbap.openstack.imageboard.domain.post.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public interface PostRepository {
-    void save(Post post);
-    Post getPostById(Long _id);
-    Integer getListLength();
-    List<Post> getPostList(Long page);
-    void update(Post post);
-    void delete(Long _id);
+public interface PostRepository extends JpaRepository<Post,Long> {
+    Optional<Post> findById(Long _id);
 }

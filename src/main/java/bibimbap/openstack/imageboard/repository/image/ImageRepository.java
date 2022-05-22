@@ -1,11 +1,8 @@
 package bibimbap.openstack.imageboard.repository.image;
 
-import bibimbap.openstack.imageboard.domain.Image;
-import org.springframework.web.multipart.MultipartFile;
+import bibimbap.openstack.imageboard.domain.image.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ImageRepository {
-    String saveFile(MultipartFile file,String imageName);
-    void saveImage(Image image);
-    Image getImageById(Long id);
-    void deleteImage(Long id);
+public interface ImageRepository extends JpaRepository<Image, Long> {
+
 }
