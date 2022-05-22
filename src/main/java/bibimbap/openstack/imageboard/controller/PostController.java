@@ -5,6 +5,7 @@ import bibimbap.openstack.imageboard.dto.PostCreateDto;
 import bibimbap.openstack.imageboard.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +38,11 @@ public class PostController {
 
     // Read List
     @GetMapping("/")
-    public ResponseEntity<List<Post>> readPostList(@RequestParam(required = false, defaultValue = "0") Long page) {
-        if (!postService.isValidPage(page)) {
+    public ResponseEntity<List<Post>> readPostList(Pageable pageable) {
+        if (!postService.isValidPage((long) pageable.getPageNumber())) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(postService.readPostList(page), HttpStatus.OK);
+        return new ResponseEntity<>(postService.readPostList(pageable), HttpStatus.OK);
     }
 
     // Update
