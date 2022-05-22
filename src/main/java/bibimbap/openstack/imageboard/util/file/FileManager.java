@@ -1,4 +1,4 @@
-package bibimbap.openstack.imageboard.util;
+package bibimbap.openstack.imageboard.util.file;
 
 import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
