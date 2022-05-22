@@ -1,4 +1,4 @@
-package bibimbap.openstack.imageboard.domain;
+package bibimbap.openstack.imageboard.domain.image;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;

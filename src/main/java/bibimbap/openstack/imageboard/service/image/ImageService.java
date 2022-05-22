@@ -1,8 +1,7 @@
-package bibimbap.openstack.imageboard.service;
+package bibimbap.openstack.imageboard.service.image;
 
-import bibimbap.openstack.imageboard.domain.Image;
-import bibimbap.openstack.imageboard.domain.Post;
-import bibimbap.openstack.imageboard.dto.ImageUploadDto;
+import bibimbap.openstack.imageboard.domain.image.Image;
+import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.repository.image.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

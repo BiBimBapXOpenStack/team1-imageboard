@@ -1,4 +1,4 @@
-package bibimbap.openstack.imageboard.dto;
+package bibimbap.openstack.imageboard.dto.post;
 
 import lombok.*;
 

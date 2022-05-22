@@ -1,13 +1,14 @@
-package bibimbap.openstack.imageboard.controller;
+package bibimbap.openstack.imageboard.controller.post;
 
-import bibimbap.openstack.imageboard.domain.Post;
-import bibimbap.openstack.imageboard.dto.PostCreateDto;
-import bibimbap.openstack.imageboard.service.PostService;
+import bibimbap.openstack.imageboard.domain.post.Post;
+import bibimbap.openstack.imageboard.dto.post.PostCreateDto;
+import bibimbap.openstack.imageboard.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RequestMapping("/api/posts")
 public class PostController {
 
@@ -22,7 +24,7 @@ public class PostController {
 
     // Create
     @PostMapping("/")
-    public ResponseEntity createPost(@RequestBody PostCreateDto post) {
+    public ResponseEntity createPost(@ModelAttribute PostCreateDto post) {
         postService.createPost(post);
         return new ResponseEntity(HttpStatus.OK);
     }

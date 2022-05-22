@@ -1,11 +1,10 @@
-package bibimbap.openstack.imageboard.service;
+package bibimbap.openstack.imageboard.service.post;
 
-import bibimbap.openstack.imageboard.domain.Post;
-import bibimbap.openstack.imageboard.dto.PostCreateDto;
+import bibimbap.openstack.imageboard.domain.post.Post;
+import bibimbap.openstack.imageboard.dto.post.PostCreateDto;
 import bibimbap.openstack.imageboard.repository.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     public void createPost(PostCreateDto post) {
+        // image save
         Post build = Post.builder()
                 .user_id(post.getUserId())
                 .title(post.getTitle())

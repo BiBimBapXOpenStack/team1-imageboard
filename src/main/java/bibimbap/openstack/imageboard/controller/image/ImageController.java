@@ -1,11 +1,10 @@
-package bibimbap.openstack.imageboard.controller;
+package bibimbap.openstack.imageboard.controller.image;
 
-import bibimbap.openstack.imageboard.domain.Image;
-import bibimbap.openstack.imageboard.dto.ImageUploadDto;
-import bibimbap.openstack.imageboard.service.ImageService;
+import bibimbap.openstack.imageboard.domain.image.Image;
+import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
+import bibimbap.openstack.imageboard.service.image.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
