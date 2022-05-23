@@ -22,7 +22,7 @@ public class PostService {
     private final ImageService imageService;
     private final PostRepository postRepository;
 
-    public void createPost(PostCreateDto post) {
+    public Long createPost(PostCreateDto post) {
         // image save
 
         Long imageId = null;
@@ -35,13 +35,13 @@ public class PostService {
         }
 
         Post build = Post.builder()
-                .user_id(post.getUserId())
+                .userId(post.getUserId())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .img_id(imageId)
+                .imgId(imageId)
                 .build();
 
-        postRepository.save(build);
+        return postRepository.save(build).getId();
     }
 
     public boolean isExistPost(Long id) {
