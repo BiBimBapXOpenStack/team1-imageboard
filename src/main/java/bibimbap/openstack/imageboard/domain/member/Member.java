@@ -32,12 +32,6 @@ public class Member {
     @Column(columnDefinition = "TEXT")
     private String password;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date createdAt;
-
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Date updatedAt;
-
     @ManyToMany
     @JoinTable(
             name = "member_authority",

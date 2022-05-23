@@ -16,7 +16,7 @@ public class Post {
     private Long id;
 
     @Column(columnDefinition = "INTEGER")
-    private Long user_id;
+    private Long userId;
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String title;
@@ -25,5 +25,5 @@ public class Post {
     private String content;
 
     @Column(columnDefinition = "INTEGER")
-    private Long img_id;
+    private Long imgId;
 }
