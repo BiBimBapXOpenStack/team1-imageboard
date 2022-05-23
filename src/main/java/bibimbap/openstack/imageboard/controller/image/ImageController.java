@@ -23,12 +23,12 @@ import java.nio.file.Paths;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RequestMapping("/api/images")
 public class ImageController {
 
     private final ImageService imageService;
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
     public ResponseEntity uploadImage(@ModelAttribute ImageUploadDto dto) {
         imageService.saveImage(dto);
@@ -61,6 +61,7 @@ public class ImageController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/download/{id}")
     public void downloadImage(@PathVariable Long id, HttpServletResponse response) throws IOException {
 
@@ -80,6 +81,7 @@ public class ImageController {
         response.getOutputStream().close();
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteImage(@PathVariable Long id) {
         if (!imageService.isExistImage(id)) {
