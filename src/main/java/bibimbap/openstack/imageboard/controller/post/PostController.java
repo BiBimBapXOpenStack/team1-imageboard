@@ -48,11 +48,12 @@ public class PostController {
     }
 
     // Update
-    @PutMapping("/")
-    public ResponseEntity updatePost(@RequestBody Post post) {
-        if (!postService.isExistPost(post.getId())) {
+    @PutMapping("/{_id}")
+    public ResponseEntity updatePost(@RequestBody Post post,@PathVariable Long _id) {
+        if (!postService.isExistPost(_id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
+        post.setId(_id);
         postService.update(post);
         return new ResponseEntity(HttpStatus.OK);
     }
