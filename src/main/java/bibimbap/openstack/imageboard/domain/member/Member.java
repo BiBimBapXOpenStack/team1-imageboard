@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@ToString
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor
