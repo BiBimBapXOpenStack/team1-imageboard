@@ -1,5 +1,6 @@
 package bibimbap.openstack.imageboard.domain.post;
 
+import bibimbap.openstack.imageboard.domain.member.Member;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -15,8 +16,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "INTEGER")
-    private Long userId;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private Member member;
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String title;
