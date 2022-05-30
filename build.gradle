@@ -12,6 +12,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	jar.archiveName = 'imageboard.jar'
 }
 
 repositories {
