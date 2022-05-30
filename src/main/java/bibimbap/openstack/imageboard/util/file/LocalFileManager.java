@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 @Component
 public class LocalFileManager implements FileManager{
 
-    private final String uploadDir = "/Users/jaeminan/desktop/uploaded/";
+    private final String uploadDir = "/Users/jaemin/desktop/uploaded/";
 
     @Override
     public Image save(ImageUploadDto dto) {
