@@ -1,19 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:team1db;MODE=MYSQL;
+    url: jdbc:mysql://59434670-e12e-49bf-88e1-175761a69358.public.rds.cloud.toast.com:10000/mydb
     username: sa
-    password:
+    password: dkswoals2010
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     show-sql: true
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
   profiles:
     default: default
 jwt:
