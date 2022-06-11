@@ -52,6 +52,7 @@ public class PostController {
     }
 
     // Read List
+    @Transactional
     @GetMapping("/")
     public ResponseEntity<List<Post>> readPostList(Pageable pageable) {
         if (!postService.isValidPage((long) pageable.getPageNumber())) {
