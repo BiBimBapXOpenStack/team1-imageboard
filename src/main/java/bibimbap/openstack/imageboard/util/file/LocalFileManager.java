@@ -2,6 +2,7 @@ package bibimbap.openstack.imageboard.util.file;
 
 import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -49,8 +50,8 @@ public class LocalFileManager implements FileManager{
     }
 
     @Override
-    public File loadFile(String url) {
-        return new File(url);
+    public byte[] loadFile(String url) throws IOException {
+        return Files.readAllBytes(new File(url).toPath());
     }
 
     @Override

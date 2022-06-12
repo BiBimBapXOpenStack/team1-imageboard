@@ -5,12 +5,14 @@ import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.service.image.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.ParseException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,13 +33,13 @@ public class ImageController {
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/")
-    public ResponseEntity uploadImage(@ModelAttribute ImageUploadDto dto) {
+    public ResponseEntity uploadImage(@ModelAttribute ImageUploadDto dto) throws JSONException, ParseException, IOException {
         imageService.saveImage(dto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resource> showImage(@PathVariable Long id) {
+    public ResponseEntity<Resource> showImage(@PathVariable Long id) throws JSONException, ParseException {
         if (!imageService.isExistImage(id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -62,14 +65,13 @@ public class ImageController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @Transactional
     @GetMapping("/download/{id}")
-    public void downloadImage(@PathVariable Long id, HttpServletResponse response) throws IOException {
+    public void downloadImage(@PathVariable Long id, HttpServletResponse response) throws IOException, JSONException, ParseException {
 
         Image image = imageService.getImageById(id);
 
-        File downloadFile = imageService.getFile(image.getImageURL());
-
-        byte[] fileByte = Files.readAllBytes(downloadFile.toPath());
+        byte[] fileByte = imageService.getFile(image.getImageURL());
         response.setContentType("application/octet-stream");
         response.setContentLength(fileByte.length);
 

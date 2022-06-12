@@ -6,6 +6,7 @@ import bibimbap.openstack.imageboard.dto.post.PostReadDto;
 import bibimbap.openstack.imageboard.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +29,7 @@ public class PostController {
 
     // Create
     @PostMapping("/")
-    public ResponseEntity createPost(@ModelAttribute PostCreateDto post) {
+    public ResponseEntity createPost(@ModelAttribute PostCreateDto post) throws JSONException, ParseException, IOException {
         postService.createPost(post);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -58,7 +61,9 @@ public class PostController {
         if (!postService.isValidPage((long) pageable.getPageNumber())) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(postService.readPostList(pageable), HttpStatus.OK);
+        List<Post> posts = postService.readPostList(pageable);
+        log.info("posts = {} ", posts);
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     // Update
