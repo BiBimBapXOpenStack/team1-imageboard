@@ -11,10 +11,13 @@ import bibimbap.openstack.imageboard.service.image.ImageService;
 import bibimbap.openstack.imageboard.util.file.FileManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +30,7 @@ public class PostService {
     private final ImageService imageService;
     private final PostRepository postRepository;
 
-    public Long createPost(PostCreateDto post) {
+    public Long createPost(PostCreateDto post) throws JSONException, ParseException, IOException {
         // image save
 
         Long imageId = null;
@@ -87,7 +90,9 @@ public class PostService {
     }
 
     public void delete(Long id) {
+        Post post = postRepository.findById(id).get();
         postRepository.delete(Post.builder().id(id).build());
+        imageService.deleteImageById(post.getImgId());
     }
 
 }
