@@ -5,21 +5,26 @@ import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.repository.image.ImageRepository;
 import bibimbap.openstack.imageboard.util.file.FileManager;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 
 @Service
 @RequiredArgsConstructor
 public class ImageService {
 
     private final ImageRepository imageRepository;
+
+    @Qualifier
     private final FileManager fileManager;
 
 
-    public Long saveImage(ImageUploadDto dto) {
+    public Long saveImage(ImageUploadDto dto) throws JSONException, ParseException, IOException {
         Image image = fileManager.save(dto);
         return imageRepository.save(image).getId();
     }
@@ -39,16 +44,16 @@ public class ImageService {
     public String getContentType(String url) {
         try {
             return fileManager.probeContentType(url);
-        } catch (IOException e) {
+        } catch (IOException | JSONException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Resource getResource(String url) {
+    public Resource getResource(String url) throws JSONException, ParseException {
         return fileManager.loadResource(url);
     }
 
-    public File getFile(String url) {
+    public byte[] getFile(String url) throws JSONException, ParseException, IOException {
         return fileManager.loadFile(url);
     }
 }
