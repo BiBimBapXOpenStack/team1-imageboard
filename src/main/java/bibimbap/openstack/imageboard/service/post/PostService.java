@@ -5,6 +5,7 @@ import bibimbap.openstack.imageboard.domain.post.Post;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.dto.post.PostCreateDto;
 import bibimbap.openstack.imageboard.dto.post.PostReadDto;
+import bibimbap.openstack.imageboard.dto.post.PostUpdateDto;
 import bibimbap.openstack.imageboard.repository.member.MemberRepository;
 import bibimbap.openstack.imageboard.repository.post.PostRepository;
 import bibimbap.openstack.imageboard.service.image.ImageService;
@@ -85,11 +86,18 @@ public class PostService {
         return postRepository.count();
     }
 
-    public void update(Post post) {
-        postRepository.save(post);
+    public void update(PostUpdateDto dto) {
+        Optional<Post> post = postRepository.findById(dto.getId());
+
+        post.ifPresent(p -> {
+            p.setContent(dto.getContent());
+            p.setTitle(dto.getTitle());
+            log.info("Update : {}", p);
+            postRepository.save(p);
+        });
     }
 
-    public void delete(Long id) {
+    public void delete(Long id) throws JSONException, ParseException {
         Post post = postRepository.findById(id).get();
         postRepository.delete(Post.builder().id(id).build());
         imageService.deleteImageById(post.getImgId());
