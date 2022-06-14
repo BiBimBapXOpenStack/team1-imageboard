@@ -85,7 +85,7 @@ public class ImageController {
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteImage(@PathVariable Long id) {
+    public ResponseEntity deleteImage(@PathVariable Long id) throws JSONException, ParseException {
         if (!imageService.isExistImage(id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }

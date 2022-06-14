@@ -63,4 +63,9 @@ public class LocalFileManager implements FileManager{
     public String probeContentType(String url) throws IOException {
         return Files.probeContentType(Paths.get(url));
     }
+
+    @Override
+    public void deleteImage(String url) {
+
+    }
 }

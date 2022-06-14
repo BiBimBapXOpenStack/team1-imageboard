@@ -37,8 +37,10 @@ public class ImageService {
         return imageRepository.findById(id).get();
     }
 
-    public void deleteImageById(Long id) {
+    public void deleteImageById(Long id) throws JSONException, ParseException {
+        Image image = getImageById(id);
         imageRepository.delete(Image.builder().id(id).build());
+        fileManager.deleteImage(image.getImageURL());
     }
 
     public String getContentType(String url) {
