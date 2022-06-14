@@ -37,6 +37,11 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
+bootWar {
+	baseName = 'imageBoard'
+	archiveName 'imageBoard.war'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
