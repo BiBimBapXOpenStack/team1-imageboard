@@ -16,4 +16,6 @@ public interface FileManager {
     byte[] loadFile(String url) throws JSONException, ParseException, IOException;
     Resource loadResource(String url) throws JSONException, ParseException;
     String probeContentType(String url) throws IOException, JSONException, ParseException;
+
+    void deleteImage(String url) throws JSONException, ParseException;
 }

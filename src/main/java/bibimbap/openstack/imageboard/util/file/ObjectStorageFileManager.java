@@ -104,6 +104,19 @@ public class ObjectStorageFileManager implements FileManager {
     }
 
     @Override
+    public void deleteImage(String url) throws JSONException, ParseException {
+        authentication();
+        String tokenId = authManager.getToken().getId();
+
+        restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X_Auth-Token", tokenId);
+        HttpEntity<String> requestHttpEntity = new HttpEntity<String>(null, headers);
+
+        restTemplate.exchange(url, HttpMethod.DELETE, requestHttpEntity, String.class);
+    }
+
+    @Override
     public String probeContentType(String url) throws IOException, JSONException, ParseException {
         byte[] bytes = _getByteArray(url);
         InputStream is = new ByteArrayInputStream(bytes);

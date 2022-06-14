@@ -3,6 +3,7 @@ package bibimbap.openstack.imageboard.controller.post;
 import bibimbap.openstack.imageboard.domain.post.Post;
 import bibimbap.openstack.imageboard.dto.post.PostCreateDto;
 import bibimbap.openstack.imageboard.dto.post.PostReadDto;
+import bibimbap.openstack.imageboard.dto.post.PostUpdateDto;
 import bibimbap.openstack.imageboard.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,6 @@ public class PostController {
     }
 
     // Read
-
     @Transactional
     @GetMapping("/{_id}")
     public ResponseEntity readPostById(@PathVariable Long _id) {
@@ -68,18 +68,18 @@ public class PostController {
 
     // Update
     @PutMapping("/{_id}")
-    public ResponseEntity updatePost(@RequestBody Post post,@PathVariable Long _id) {
+    public ResponseEntity updatePost(@RequestBody PostUpdateDto dto, @PathVariable Long _id) {
+        log.info("Update Dto  = {}", dto);
         if (!postService.isExistPost(_id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        post.setId(_id);
-        postService.update(post);
+        postService.update(dto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     // Delete
     @DeleteMapping("/{_id}")
-    public ResponseEntity deletePost(@PathVariable Long _id) {
+    public ResponseEntity deletePost(@PathVariable Long _id) throws JSONException, ParseException {
         if (!postService.isExistPost(_id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
