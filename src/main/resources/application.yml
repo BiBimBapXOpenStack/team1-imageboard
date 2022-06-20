@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://59434670-e12e-49bf-88e1-175761a69358.public.rds.cloud.toast.com:10000/mydb
+    url: jdbc:mysql://c07e5a6e-c560-4fe7-b17b-757f67b43b60.external.kr1.mysql.rds.nhncloudservice.com:10000/mydb
     username: sa
     password: dkswoals2010
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,7 +9,7 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     defer-datasource-initialization: true
   profiles:
     default: default
