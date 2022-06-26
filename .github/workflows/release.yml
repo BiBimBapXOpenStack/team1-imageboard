@@ -29,7 +29,7 @@ jobs:
           host: ${{ secrets.RELEASE_SSH_HOST }}
           username: ${{ secrets.RELEASE_USERNAME }}
           key: ${{ secrets.RELEASE_PEM_KEY }}
-          port: ${{ secrets.RELEASE_SSH_PORT }}
+          port: ${{ secrets.SSH_PORT }}
           timeout: 40s
           script: |
             whoami
