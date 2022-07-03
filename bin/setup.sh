@@ -5,9 +5,13 @@
 sudo apt-get update
 sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
-# make war file
+# set config and build
 git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git
-cd team1-imageboard
+cd team1-imageboard/src/main/resources
+sudo echo spring.datasource.url=$1 >> application.properties
+sudo echo spring.datasource.username=$2 >> application.properties
+sudo echo spring.datasource.password=$3 >> application.properties
+sudo echo jwt.secret=$4 >> application.properties
 ./gradlew build -x check
 
 # place war file to tomcat directory

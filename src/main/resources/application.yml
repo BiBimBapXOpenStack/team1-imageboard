@@ -1,8 +1,5 @@
 spring:
   datasource:
-    url: jdbc:mysql://c07e5a6e-c560-4fe7-b17b-757f67b43b60.external.kr1.mysql.rds.nhncloudservice.com:10000/mydb
-    username: sa
-    password: dkswoals2010
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -15,5 +12,4 @@ spring:
     default: default
 jwt:
   header: Authorization
-  secret: YXR0by1yZXNlYXJjaC1hc3NpZ25tZW50LWJ5LWppeW91bmctbGVlLXR1bGlwLWxlZS1pcy1nb29kLXZlcnktZ29vZAo=
   token-validity-in-seconds: 86400
