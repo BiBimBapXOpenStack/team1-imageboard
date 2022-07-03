@@ -7,6 +7,8 @@ sudo apt-get update
 sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
 # set config and build
+git config --global user.email anjm1020@gmail.com
+git config --global user.name jaemin
 git pull origin develop
 cd
 cd team1-imageboard/bin/
