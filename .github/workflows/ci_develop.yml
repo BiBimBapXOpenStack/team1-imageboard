@@ -38,7 +38,6 @@ jobs:
             sudo apt-get install git -y
             git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git
             cd team1-imageboard/bin
-            sudo chmod 755 setup.sh
             ./setup.sh ${{ secrets.DB_URL }} ${{ secrets.DB_USERNAME }} ${{ secrets.DB_PASSWORD }} ${{ secrets.JWT_KEY }}
             
 
