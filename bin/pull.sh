@@ -2,6 +2,8 @@
 # pull.sh
 
 cd team1-imageboard
+git fetch --all
+git reset --hard origin/develop
 git pull origin develop
 ../gradlew build -x check
 cd ~/../../var/lib/tomcat9/webapps
