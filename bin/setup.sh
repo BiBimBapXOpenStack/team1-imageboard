@@ -1,5 +1,6 @@
 #!/bin/bash
 # setup.sh
+# @param $1=db_url, $2=db_username, $3=db_password, $4=jwt_secret
 
 # apt update, install dependency
 sudo apt-get update
