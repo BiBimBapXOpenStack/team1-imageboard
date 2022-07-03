@@ -6,8 +6,6 @@ sudo apt-get update
 sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
 # make war file
-git config --global user.email anjm1020@gmail.com
-git config --global user.name jaemin
 git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git
 cd team1-imageboard
 ./gradlew build -x check
