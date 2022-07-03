@@ -8,7 +8,11 @@ sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
 # set config and build
 git pull origin develop
-cd team1-imageboard/src/main/resources
+cd
+cd team1-imageboard/bin/
+sudo chmod 755 *.sh
+cd
+cd team1-imageboard/src/main/resources/
 sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
 sudo echo spring.datasource.password=$3 >> application.properties
