@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI_RELEASE
 
 # Controls when the workflow will run
 on:
@@ -30,8 +30,7 @@ jobs:
           username: ${{ secrets.RELEASE_USERNAME }}
           key: ${{ secrets.RELEASE_PEM_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          timeout: 40s
           script: |
             whoami
-            ./build.sh
+            ./team1-imageboard/bin/pull.sh
         
