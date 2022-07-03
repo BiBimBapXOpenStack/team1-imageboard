@@ -7,7 +7,7 @@ sudo apt-get update
 sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
 # set config and build
-git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git
+git pull origin develop
 cd team1-imageboard/src/main/resources
 sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
