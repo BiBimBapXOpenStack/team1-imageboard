@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI_DEV
+name: INIT_DEV
 
 # Controls when the workflow will run
 on:
@@ -39,17 +39,4 @@ jobs:
             git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git
             cd team1-imageboard/bin
             ./setup.sh ${{ secrets.DB_URL }} ${{ secrets.DB_USERNAME }} ${{ secrets.DB_PASSWORD }} ${{ secrets.JWT_KEY }}
-            
-
-      - name: SSH Remote Commands
-        if: ${{ !contains(github.event.head_commit.message, '[INIT]') }}
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.DEV_SSH_HOST }}
-          username: ${{ secrets.DEV_USERNAME }}
-          key: ${{ secrets.DEV_PEM_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            whoami
-            ./team1-imageboard/bin/pull.sh
-        
+ 
