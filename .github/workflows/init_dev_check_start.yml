@@ -2,7 +2,7 @@ name: init_dev_check_start
 
 on:
   workflow_run:
-    workflows: [CI_DEV]
+    workflows: [INIT_DEV]
     types:
       - requested
 
@@ -31,7 +31,7 @@ jobs:
                 "author_name": "init_start",
                 fallback: 'fallback',
                 color: 'good',
-                title: 'CI Result',
+                title: 'Init Result',
                 text: 'Successed',
                 fields: [{
                   title: 'Error Msg',
