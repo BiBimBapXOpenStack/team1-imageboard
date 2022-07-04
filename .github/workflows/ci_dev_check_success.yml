@@ -2,7 +2,7 @@ name: ci_dev_check_success
 
 on:
   workflow_run:
-    workflows: [ci_develop]
+    workflows: [CI_DEV]
     types: [completed]
 
 jobs:
