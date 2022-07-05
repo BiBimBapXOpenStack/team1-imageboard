@@ -22,6 +22,9 @@ echo ===========================================
 echo 3. Make Spring Configuration file
 echo ===========================================
 cd ~/team1-imageboard/src/main/resources/
+if [ -f application.properties ]
+  rm application.properties
+fi
 sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
 sudo echo spring.datasource.password=$3 >> application.properties
