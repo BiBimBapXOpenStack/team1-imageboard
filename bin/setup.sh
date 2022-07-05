@@ -26,6 +26,7 @@ sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
 sudo echo spring.datasource.password=$3 >> application.properties
 sudo echo jwt.secret=$4 >> application.properties
+cat application.properties
 
 echo ===========================================
 echo 4. Build
@@ -41,6 +42,9 @@ sudo rm -rf ROOT
 sudo rm -rf ROOT.war
 cd ~/team1-imageboard/build/libs
 sudo mv imageBoard.war ~/../../var/lib/tomcat9/webapps/ROOT.war
+cd ~/../../var/lib/tomcat9/webapps/
+echo <webapps>
+ls
 
 echo ===========================================
 echo 6. Set Tomcat Port
