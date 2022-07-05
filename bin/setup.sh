@@ -55,8 +55,10 @@ echo 6. Set Tomcat Port
 echo ===========================================
 cd ~/../../etc/tomcat9
 sudo xmlstarlet ed --inplace --update "/Server/Service/Connector/@port" -v 80 server.xml
+echo Success - Set Tomcat Port
 
 echo ===========================================
 echo 7. Tomcat Restart
 echo ===========================================
 sudo systemctl restart tomcat9
+echo Success - Tomcat Restart
