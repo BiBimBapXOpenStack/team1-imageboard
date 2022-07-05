@@ -30,6 +30,7 @@ sudo echo jwt.secret=$4 >> application.properties
 echo ===========================================
 echo 4. Build
 echo ===========================================
+cd ~/team1-imageboard/
 ./gradlew build -x check
 
 echo ===========================================
