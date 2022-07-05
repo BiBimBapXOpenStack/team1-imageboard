@@ -9,10 +9,12 @@ sudo apt-get update
 sudo apt-get install default-jdk xmlstarlet tomcat9 git -y
 
 echo ===========================================
-echo 2. Git Configure, Pull
+echo 2. Repository Check, Git Configure, Pull
 echo ===========================================
 git config --global user.email anjm1020@gmail.com
 git config --global user.name jaemin
+cd ~
+[ -d team1-imageboard ] || git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git 
 cd ~/team1-imageboard/
 git fetch --all
 git reset --hard origin/develop
@@ -22,10 +24,7 @@ echo ===========================================
 echo 3. Make Spring Configuration file
 echo ===========================================
 cd ~/team1-imageboard/src/main/resources/
-if [ -f application.properties ]
-then  
-  rm application.properties
-fi
+[ -f application.properties ] && rm application.properties
 sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
 sudo echo spring.datasource.password=$3 >> application.properties
@@ -55,7 +54,8 @@ echo 6. Set Tomcat Port
 echo ===========================================
 cd ~/../../etc/tomcat9
 sudo xmlstarlet ed --inplace --update "/Server/Service/Connector/@port" -v 80 server.xml
-echo Success - Set Tomcat Port
+echo Success - Set Tomcat Port :
+sudo xmlstarlet sel -T -t -v "/Server/Service/Connector/@port" server.xml
 
 echo ===========================================
 echo 7. Tomcat Restart
