@@ -47,7 +47,7 @@ sudo rm -rf ROOT.war
 cd ~/team1-imageboard/build/libs
 sudo mv imageBoard.war ~/../../var/lib/tomcat9/webapps/ROOT.war
 cd ~/../../var/lib/tomcat9/webapps/
-echo <webapps>
+echo Directory : webapps ls
 ls
 
 echo ===========================================
