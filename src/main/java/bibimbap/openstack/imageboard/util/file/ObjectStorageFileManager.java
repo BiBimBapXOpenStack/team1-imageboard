@@ -4,6 +4,7 @@ import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
 import bibimbap.openstack.imageboard.util.file.auth.AuthManager;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONException;
 import org.springframework.context.annotation.Primary;
@@ -23,9 +24,11 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.Date;
 
 @Primary
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class ObjectStorageFileManager implements FileManager {
 
@@ -58,12 +61,18 @@ public class ObjectStorageFileManager implements FileManager {
 
         HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<>(String.class, restTemplate.getMessageConverters());
 
+        StringBuilder sb = new StringBuilder();
+
         String URL = "https://api-storage.cloud.toast.com/v1/";
         String storageId = "AUTH_35682dae0076479ab712dbb328468535";
         String containerName = "ajm-test";
-        String imageName = dto.getImageName();
+        String imageName = sb
+                .append(new Date().getTime())
+                .append("/")
+                .append(dto.getImageName())
+                .toString();
 
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
         sb.append(URL).append(storageId).append("/").append(containerName).append("/").append(imageName);
         URL = sb.toString();
 

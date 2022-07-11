@@ -18,7 +18,6 @@ import java.util.Collections;
 public class MemberDecorator {
     private final MemberRepository memberRepository;
     private final AuthorityRepository authorityRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
