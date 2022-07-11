@@ -2,8 +2,8 @@
 # setup.sh
 # @param $1=db_url, $2=db_username, $3=db_password, $4=jwt_secret
 
-repoDir=/home/ubuntu/team1-imageboard
-tomcatWebappsDir=/var/lib/tomcat9/webapps
+REPO_DIR=/home/ubuntu/team1-imageboard
+TOMCAT_WEBAPPS_DIR=/var/lib/tomcat9/webapps
 
 echo "==========================================="
 echo "1. Install Dependency"
@@ -15,7 +15,7 @@ echo "==========================================="
 echo "2. Repository Check, Git Configure, Pull"
 echo "==========================================="
 [ -d team1-imageboard ] || git clone https://github.com/BiBimBapXOpenStack/team1-imageboard.git 
-cd $repoDir
+cd $REPO_DIR
 git fetch --all
 git reset --hard origin/develop
 git pull origin develop
@@ -23,7 +23,7 @@ git pull origin develop
 echo "==========================================="
 echo 3. Make Spring Configuration file
 echo "==========================================="
-cd $repoDir/src/main/resources/
+cd $REPO_DIR/src/main/resources/
 [ -f application.properties ] && rm application.properties
 sudo echo spring.datasource.url=$1 >> application.properties
 sudo echo spring.datasource.username=$2 >> application.properties
@@ -34,18 +34,18 @@ cat application.properties
 echo "==========================================="
 echo "4. Build"
 echo "==========================================="
-cd $repoDir
+cd $REPO_DIR
 ./gradlew build -x check
 
 echo "==========================================="
 echo "5. Set war file to Tomcat"
 echo "==========================================="
-cd $tomcatWebappsDir
+cd $TOMCAT_WEBAPPS_DIR
 sudo rm -rf ROOT
 sudo rm -rf ROOT.war
-cd $repoDir/build/libs
-sudo mv imageBoard.war $tomcatWebappsDir/ROOT.war
-cd $tomcatWebappsDir
+cd $REPO_DIR/build/libs
+sudo mv imageBoard.war $TOMCAT_WEBAPPS_DIR/ROOT.war
+cd $TOMCAT_WEBAPPS_DIR
 echo "Directory : tomcat9/webapps"
 ls
 
