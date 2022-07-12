@@ -53,11 +53,13 @@ public class ObjectStorageFileManager implements FileManager {
         String tokenId = authManager.getToken().getId();
 
         InputStream inputStream = dto.getFile().getInputStream();
+        String contentType = dto.getFile().getContentType();
 
         final RequestCallback requestCallback = new RequestCallback() {
             @Override
             public void doWithRequest(ClientHttpRequest request) throws IOException {
                 request.getHeaders().add("X-Auth-Token", tokenId);
+                request.getHeaders().add("Content-Type", contentType);
                 IOUtils.copy(inputStream, request.getBody());
             }
         };
