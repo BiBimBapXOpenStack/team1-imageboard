@@ -1,4 +1,4 @@
-package bibimbap.openstack.imageboard.controller;
+package bibimbap.openstack.imageboard.controller.test;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
