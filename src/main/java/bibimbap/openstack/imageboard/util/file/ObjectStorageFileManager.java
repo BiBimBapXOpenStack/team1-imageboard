@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -35,6 +36,13 @@ public class ObjectStorageFileManager implements FileManager {
     private final AuthManager authManager;
     private RestTemplate restTemplate;
 
+    @Value("${object-storage.container.URL}")
+    private String URL;
+    @Value("${object-storage.container.storageId}")
+    private String storageId;
+    @Value("${object-storage.container.containerName}")
+    private String containerName;
+
     public void authentication() throws JSONException, ParseException {
         authManager.generateToken();
     }
@@ -45,7 +53,6 @@ public class ObjectStorageFileManager implements FileManager {
         String tokenId = authManager.getToken().getId();
 
         InputStream inputStream = dto.getFile().getInputStream();
-
 
         final RequestCallback requestCallback = new RequestCallback() {
             @Override
@@ -63,9 +70,6 @@ public class ObjectStorageFileManager implements FileManager {
 
         StringBuilder sb = new StringBuilder();
 
-        String URL = "https://api-storage.cloud.toast.com/v1/";
-        String storageId = "AUTH_35682dae0076479ab712dbb328468535";
-        String containerName = "ajm-test";
         String imageName = sb
                 .append(new Date().getTime())
                 .append("/")

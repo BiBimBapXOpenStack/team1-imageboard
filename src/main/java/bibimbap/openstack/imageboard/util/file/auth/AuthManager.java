@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,14 @@ import java.util.Date;
 public class AuthManager {
 
     private Token token;
+    @Value("${object-storage.token.URL}")
+    private String URL;
+    @Value("${object-storage.token.tenantId}")
+    private String tenantId;
+    @Value("${object-storage.token.username}")
+    private String username;
+    @Value("${object-storage.token.password}")
+    private String password;
 
     @Data
     public class TokenRequest {
@@ -48,10 +57,6 @@ public class AuthManager {
         if (isTokenValidate()) return;
 
         RestTemplate restTemplate = new RestTemplate();
-        String URL = "https://api-identity.infrastructure.cloud.toast.com/v2.0/tokens";
-        String tenantId = "35682dae0076479ab712dbb328468535";
-        String username = "anjm1020@gmail.com";
-        String password = "dkswoals2010";
 
         TokenRequest tokenRequest = new TokenRequest();
         tokenRequest.getAuth().setTenantId(tenantId);

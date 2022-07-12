@@ -2,6 +2,7 @@ package bibimbap.openstack.imageboard.util.file;
 
 import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.dto.image.ImageUploadDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -16,7 +17,8 @@ import java.nio.file.Paths;
 @Component
 public class LocalFileManager implements FileManager{
 
-    private final String uploadDir = "/Users/jaemin/desktop/uploaded/";
+    @Value("${local-storage.container.URL}")
+    private String uploadDir;
 
     @Override
     public Image save(ImageUploadDto dto) {
