@@ -9,7 +9,10 @@ public class PostReadDto {
     private Long id;
     private String title;
     private String content;
-    private Long imgId;
+
+    private Long imageId;
+    private String imageUrl;
+
     private Long userId;
     private String username;
 }

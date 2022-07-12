@@ -1,5 +1,6 @@
 package bibimbap.openstack.imageboard.domain.post;
 
+import bibimbap.openstack.imageboard.domain.image.Image;
 import bibimbap.openstack.imageboard.domain.member.Member;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -26,6 +27,7 @@ public class Post {
     @Column(columnDefinition = "VARCHAR(255)")
     private String content;
 
-    @Column(columnDefinition = "INTEGER")
-    private Long imgId;
+    @OneToOne
+    @JoinColumn(name = "imageId")
+    private Image image;
 }
