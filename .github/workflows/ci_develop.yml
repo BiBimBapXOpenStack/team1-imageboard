@@ -34,5 +34,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami
-            ./team1-imageboard/bin/setup.sh ${{ secrets.DB_URL }} ${{ secrets.DB_USERNAME }} ${{ secrets.DB_PASSWORD }} ${{ secrets.JWT_KEY }}
+            cd /home/ubuntu/team1-imageboard/bin
+            ./pull.sh
         
