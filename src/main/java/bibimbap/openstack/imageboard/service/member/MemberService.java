@@ -34,7 +34,7 @@ public class MemberService {
         if (memberRepository.findByEmail(
                 memberSaveDto.getEmail()).orElse(null) != null
         ) {
-            return makeResult(HttpStatus.INTERNAL_SERVER_ERROR, "이미 가입되어 있는 유저입니다.");
+            return makeResult(HttpStatus.CONFLICT, "이미 가입되어 있는 유저입니다.");
         }
 
         Member member = memberDecorator.save(memberSaveDto);
