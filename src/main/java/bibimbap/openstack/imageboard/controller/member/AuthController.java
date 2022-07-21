@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -26,7 +27,7 @@ public class AuthController {
      * @return
      */
     @PostMapping("login")
-    public ResponseEntity<ResultDto> createJwt(@RequestBody MemberLoginDto memberLoginDto) {
-        return authService.authorize(memberLoginDto);
+    public ResponseEntity<ResultDto> createJwt(HttpServletRequest request, @RequestBody MemberLoginDto memberLoginDto) {
+        return authService.authorize(request,memberLoginDto);
     }
 }

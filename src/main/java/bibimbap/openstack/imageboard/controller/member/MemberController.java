@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/members")
 @RequiredArgsConstructor
@@ -23,8 +25,8 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<ResultDto> signup(@RequestBody MemberSaveDto memberSaveDto) {
-        return memberService.signup(memberSaveDto);
+    public ResponseEntity<ResultDto> signup(HttpServletRequest request, @RequestBody MemberSaveDto memberSaveDto) {
+        return memberService.signup(request,memberSaveDto);
     }
 
     // 회원 정보 조회 API

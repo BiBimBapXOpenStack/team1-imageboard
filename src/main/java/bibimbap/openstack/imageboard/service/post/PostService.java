@@ -11,18 +11,18 @@ import bibimbap.openstack.imageboard.repository.image.ImageRepository;
 import bibimbap.openstack.imageboard.repository.member.MemberRepository;
 import bibimbap.openstack.imageboard.repository.post.PostRepository;
 import bibimbap.openstack.imageboard.service.image.ImageService;
+import bibimbap.openstack.imageboard.util.log.CustomLogger;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -32,7 +32,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final ImageRepository imageRepository;
 
-    public Long createPost(PostCreateDto post) throws JSONException, ParseException, IOException {
+    public Long createPost(PostCreateDto post, HttpServletRequest request) throws JSONException, ParseException, IOException {
         // image save
 
         Long imageId = null;
@@ -42,9 +42,10 @@ public class PostService {
                     .file(post.getFile())
                     .build()
             );
-        }
 
-        log.info("DTO = {}", post);
+        }
+        CustomLogger.log(request,"IMAGE/SAVE SUCCESS (imageId:"+imageId+")");
+
         Member member = memberRepository.findById(post.getUserId()).get();
         Image image = imageRepository.findById(imageId).get();
 
@@ -55,7 +56,10 @@ public class PostService {
                 .image(image)
                 .build();
 
-        return postRepository.save(build).getId();
+
+        Post saved = postRepository.save(build);
+        CustomLogger.log(request,"POST/CREATE SUCCESS (postId:"+saved.getId()+",member.email:"+saved.getMember().getEmail()+")");
+        return saved.getId();
     }
 
     public boolean isExistPost(Long id) {
@@ -96,7 +100,6 @@ public class PostService {
         post.ifPresent(p -> {
             p.setContent(dto.getContent());
             p.setTitle(dto.getTitle());
-            log.info("Update : {}", p);
             postRepository.save(p);
         });
     }

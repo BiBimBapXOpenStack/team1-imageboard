@@ -1,0 +1,81 @@
+20:48:02.338+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Starting ImageboardApplication using Java 17.0.3 on jaeminui-MacBookPro.local with PID 15546 (/Users/jaemin/Desktop/imageboard/team1-imageboard/out/production/classes started by jaemin in /Users/jaemin/Desktop/imageboard/team1-imageboard)
+20:48:02.340+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - No active profile set, falling back to 1 default profile: "default"
+20:48:02.622+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:48:02.649+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 4 JPA repository interfaces.
+20:48:02.873+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:48:02.876+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:48:02.876+0900 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+20:48:02.876+0900 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.62]
+20:48:02.913+0900 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:48:02.913+0900 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 559 ms
+20:48:02.977+0900 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+20:48:02.993+0900 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.8.Final
+20:48:03.035+0900 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+20:48:03.064+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+20:48:03.631+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+20:48:03.640+0900 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+20:48:04.136+0900 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:48:04.141+0900 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:48:04.453+0900 [main] WARN  org.springframework.security.config.annotation.web.builders.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/h2-console/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:48:04.454+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will not secure Ant [pattern='/h2-console/**']
+20:48:04.471+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@166a5659, org.springframework.security.web.context.SecurityContextPersistenceFilter@c414eb3, org.springframework.security.web.header.HeaderWriterFilter@5f14590c, org.springframework.security.web.authentication.logout.LogoutFilter@396c1228, bibimbap.openstack.imageboard.security.JwtFilter@1afabf06, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a73f3d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1018f702, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33060020, org.springframework.security.web.session.SessionManagementFilter@222eda8a, org.springframework.security.web.access.ExceptionTranslationFilter@384f0e32, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@421d7900]
+20:48:04.802+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:48:04.809+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:48:04.815+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Started ImageboardApplication in 2.601 seconds (JVM running for 2.922)
+20:48:14.714+0900 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+20:48:14.716+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+20:48:14.719+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+20:49:26.380+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Starting ImageboardApplication using Java 17.0.3 on jaeminui-MacBookPro.local with PID 15679 (/Users/jaemin/Desktop/imageboard/team1-imageboard/out/production/classes started by jaemin in /Users/jaemin/Desktop/imageboard/team1-imageboard)
+20:49:26.383+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - No active profile set, falling back to 1 default profile: "default"
+20:49:26.638+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:49:26.662+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 4 JPA repository interfaces.
+20:49:26.875+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:49:26.878+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:49:26.878+0900 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+20:49:26.878+0900 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.62]
+20:49:26.914+0900 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:49:26.915+0900 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 519 ms
+20:49:26.975+0900 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+20:49:26.991+0900 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.8.Final
+20:49:27.028+0900 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+20:49:27.054+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+20:49:27.600+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+20:49:27.610+0900 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+20:49:28.066+0900 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:49:28.071+0900 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:49:28.350+0900 [main] WARN  org.springframework.security.config.annotation.web.builders.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/h2-console/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:49:28.351+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will not secure Ant [pattern='/h2-console/**']
+20:49:28.370+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@219a2203, org.springframework.security.web.context.SecurityContextPersistenceFilter@67baa05, org.springframework.security.web.header.HeaderWriterFilter@270be080, org.springframework.security.web.authentication.logout.LogoutFilter@13ae87a6, bibimbap.openstack.imageboard.security.JwtFilter@58fbfefb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@267b678f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@257d3968, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1db9c2cf, org.springframework.security.web.session.SessionManagementFilter@5f14590c, org.springframework.security.web.access.ExceptionTranslationFilter@623ded82, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5ec3689b]
+20:49:28.673+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:49:28.681+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:49:28.686+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Started ImageboardApplication in 2.432 seconds (JVM running for 2.743)
+20:49:30.237+0900 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+20:49:30.238+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+20:49:30.240+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+20:49:35.645+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Starting ImageboardApplication using Java 17.0.3 on jaeminui-MacBookPro.local with PID 15688 (/Users/jaemin/Desktop/imageboard/team1-imageboard/out/production/classes started by jaemin in /Users/jaemin/Desktop/imageboard/team1-imageboard)
+20:49:35.648+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - No active profile set, falling back to 1 default profile: "default"
+20:49:35.903+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:49:35.926+0900 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 4 JPA repository interfaces.
+20:49:36.131+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:49:36.135+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:49:36.135+0900 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+20:49:36.135+0900 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.62]
+20:49:36.172+0900 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:49:36.172+0900 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 511 ms
+20:49:36.233+0900 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+20:49:36.249+0900 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.8.Final
+20:49:36.288+0900 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+20:49:36.315+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+20:49:36.520+0900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+20:49:36.526+0900 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+20:49:36.970+0900 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:49:36.976+0900 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:49:37.263+0900 [main] WARN  org.springframework.security.config.annotation.web.builders.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/h2-console/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:49:37.263+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will not secure Ant [pattern='/h2-console/**']
+20:49:37.280+0900 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3696d12d, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ef7ae2f, org.springframework.security.web.header.HeaderWriterFilter@7c07023, org.springframework.security.web.authentication.logout.LogoutFilter@58fbfefb, bibimbap.openstack.imageboard.security.JwtFilter@656672fb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b5bddfe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ca3acad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75df4b1d, org.springframework.security.web.session.SessionManagementFilter@32f45e15, org.springframework.security.web.access.ExceptionTranslationFilter@5d373794, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4d4bac56]
+20:49:37.589+0900 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:49:37.596+0900 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:49:37.601+0900 [main] INFO  bibimbap.openstack.imageboard.ImageboardApplication - Started ImageboardApplication in 2.076 seconds (JVM running for 2.404)
+21:33:50.340+0900 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:33:50.342+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:33:50.343+0900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

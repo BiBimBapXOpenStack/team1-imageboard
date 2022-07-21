@@ -6,7 +6,6 @@ import bibimbap.openstack.imageboard.dto.post.PostReadDto;
 import bibimbap.openstack.imageboard.dto.post.PostUpdateDto;
 import bibimbap.openstack.imageboard.service.post.PostService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,11 +14,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-@Slf4j
 @RequiredArgsConstructor
 @RestController
 @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
@@ -30,8 +29,8 @@ public class PostController {
 
     // Create
     @PostMapping("/")
-    public ResponseEntity createPost(@ModelAttribute PostCreateDto post) throws JSONException, ParseException, IOException {
-        postService.createPost(post);
+    public ResponseEntity createPost(HttpServletRequest request, @ModelAttribute PostCreateDto post) throws JSONException, ParseException, IOException {
+        postService.createPost(post,request);
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -50,7 +49,6 @@ public class PostController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         PostReadDto post = postService.readPostById(_id);
-        log.info("post = {}", post);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
@@ -62,14 +60,12 @@ public class PostController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         List<Post> posts = postService.readPostList(pageable);
-        log.info("posts = {} ", posts);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     // Update
     @PutMapping("/{_id}")
     public ResponseEntity updatePost(@RequestBody PostUpdateDto dto, @PathVariable Long _id) {
-        log.info("Update Dto  = {}", dto);
         if (!postService.isExistPost(_id)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }

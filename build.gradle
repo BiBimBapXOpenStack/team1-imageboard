@@ -1,8 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.7'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'war'
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'war'
 }
 
 group = 'bibimbap.openstack'
@@ -10,38 +10,45 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	jar.archiveName = 'imageboard.jar'
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    jar.archiveName = 'imageboard.jar'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.1'
-	implementation 'mysql:mysql-connector-java'
-	implementation 'org.json:json:20090211'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.1'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.1'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.1'
+    implementation 'mysql:mysql-connector-java'
+    implementation 'org.json:json:20090211'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.1'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
+
 bootWar {
-	baseName = 'imageBoard'
-	archiveName 'imageBoard.war'
+    baseName = 'imageBoard'
+    archiveName 'imageBoard.war'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

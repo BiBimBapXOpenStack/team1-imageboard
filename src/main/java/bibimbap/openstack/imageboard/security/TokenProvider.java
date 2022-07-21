@@ -84,13 +84,13 @@ public class TokenProvider implements InitializingBean {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (SecurityException | MalformedJwtException e) {
-            log.info("wrong jwt assignment");
+//            log.info("wrong jwt assignment");
         } catch (ExpiredJwtException e) {
-            log.info("expired jwt token");
+//            log.info("expired jwt token");
         } catch (UnsupportedJwtException e) {
-            log.info("unsupported jwt token");
+//            log.info("unsupported jwt token");
         } catch (IllegalArgumentException e) {
-            log.info("wrong jwt token");
+//            log.info("wrong jwt token");
         }
         return false;
     }

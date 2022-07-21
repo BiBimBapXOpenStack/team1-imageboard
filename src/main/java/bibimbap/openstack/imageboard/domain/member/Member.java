@@ -33,7 +33,7 @@ public class Member {
     @Column(columnDefinition = "TEXT")
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "member_authority",
             joinColumns = @JoinColumn(name = "member_id"),
