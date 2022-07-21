@@ -9,8 +9,8 @@
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
         </Console>
         <RollingFile name="FileLog"
-                     fileName="./logs/spring.log"
-                     filePattern="./logs/spring-%d{yyyy-MM-dd-hh-mm}-%i.log">
+                     fileName="./logs/spring/spring.log"
+                     filePattern="./logs/spring/spring-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" />
