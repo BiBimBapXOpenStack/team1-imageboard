@@ -1,5 +1,6 @@
 package bibimbap.openstack.imageboard.controller.test;
 
+import bibimbap.openstack.imageboard.dto.test.TestDto;
 import bibimbap.openstack.imageboard.util.log.CustomLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,8 @@ public class TestController {
     }
 
     @PostMapping("/")
-    String testPostAPI(@RequestBody Long id) {
-        return "Hello " + id;
+    String testPostAPI(@RequestBody TestDto dto) {
+        return "Hello " + dto.getName()+" / "+dto.getId();
     }
 
     @GetMapping("/{name}")
