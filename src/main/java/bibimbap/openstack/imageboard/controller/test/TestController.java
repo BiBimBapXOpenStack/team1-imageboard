@@ -2,10 +2,7 @@ package bibimbap.openstack.imageboard.controller.test;
 
 import bibimbap.openstack.imageboard.util.log.CustomLogger;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,9 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 public class TestController {
 
     @GetMapping("/")
-    String testAPI(HttpServletRequest request) {
-        CustomLogger.log(request,"test");
+    String testGetAPI(HttpServletRequest request) {
+        CustomLogger.log(request, "test");
         return "Conn Success";
+    }
+
+    @PostMapping("/")
+    String testPostAPI(@RequestBody Long id) {
+        return "Hello " + id;
     }
 
     @GetMapping("/{name}")
@@ -27,5 +29,6 @@ public class TestController {
                 .append(name)
                 .toString();
     }
+
 
 }
