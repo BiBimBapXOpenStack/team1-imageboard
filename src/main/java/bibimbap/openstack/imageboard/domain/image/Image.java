@@ -18,6 +18,6 @@ public class Image {
     @Column(columnDefinition = "VARCHAR(255)")
     private String imageName;
 
-    @Column(columnDefinition = "VARCHAR(2048)")
+    @Column(columnDefinition = "VARCHAR(30000)")
     private String imageURL;
 }
