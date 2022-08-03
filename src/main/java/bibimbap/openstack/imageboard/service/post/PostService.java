@@ -90,6 +90,10 @@ public class PostService {
         return postRepository.findAll(pageable).getContent();
     }
 
+    public List<Post> readPostList() {
+        return postRepository.findAll();
+    }
+
     public Long getListLength() {
         return postRepository.count();
     }

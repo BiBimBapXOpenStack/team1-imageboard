@@ -41,4 +41,4 @@ secrets.yml
 .sts4-cache
 !gradle-wrapper.jar
 src/main/resources/application.properties
-
+logs/

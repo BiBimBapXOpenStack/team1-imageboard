@@ -55,13 +55,23 @@ public class PostController {
     // Read List
     @Transactional
     @GetMapping("/")
+    public ResponseEntity<List<Post>> readPostList() {
+        List<Post> posts = postService.readPostList();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    // Read List with Pagination
+    @Transactional
+    @GetMapping(value = "/", params = {"page", "size"})
     public ResponseEntity<List<Post>> readPostList(Pageable pageable) {
+
         if (!postService.isValidPage((long) pageable.getPageNumber())) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         List<Post> posts = postService.readPostList(pageable);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
+
 
     // Update
     @PutMapping("/{_id}")
