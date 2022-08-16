@@ -114,4 +114,8 @@ public class PostService {
         imageService.deleteImageById(post.getImage().getId());
     }
 
+    public void deleteAllTestColumn() {
+        postRepository.deleteAllByTitle("TEST");
+    }
+
 }
