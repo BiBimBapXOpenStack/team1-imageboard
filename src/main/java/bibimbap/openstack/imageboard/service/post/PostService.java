@@ -42,9 +42,9 @@ public class PostService {
                     .file(post.getFile())
                     .build()
             );
-
+            CustomLogger.log(request,"IMAGE/SAVE SUCCESS (imageId:"+imageId+")");
         }
-        CustomLogger.log(request,"IMAGE/SAVE SUCCESS (imageId:"+imageId+")");
+
 
         Member member = memberRepository.findById(post.getUserId()).get();
         Image image = imageRepository.findById(imageId).get();
